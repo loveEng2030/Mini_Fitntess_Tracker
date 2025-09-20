@@ -1,5 +1,7 @@
 ﻿
 ﻿using System;
+using System.Globalization;
+using System.Text;
 using FitnesTraker_project;
 
 namespace FitnesTraker_project
@@ -9,6 +11,7 @@ namespace FitnesTraker_project
         static User currentUser = null;
         static ProgressTracker tracker = new ProgressTracker();
 
+        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         static void Main(string[] args)
         {
             int choice;
@@ -27,43 +30,49 @@ namespace FitnesTraker_project
                 Console.WriteLine("\t\t\t\t\t 7. Exit\n");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("\t\t\t\t\t Choose an option: ");
+                //GetRandomDua();
 
                 int.TryParse(Console.ReadLine(), out choice);
 
                 switch (choice)
                 {
                     case 1:
-                        CreateNewUser();
+                        CreateNewUser(); 
+                        GetRandomDua();
                         break;
                     case 2:
-                        UpdateProfile();
+                        UpdateProfile(); GetRandomDua();
                         break;
                     case 3:
-                        LogWorkout();
+                        LogWorkout(); GetRandomDua();
                         break;
                     case 4:
-                        ViewWorkoutPlan();
+                        ViewWorkoutPlan(); GetRandomDua();
                         break;
                     case 5:
-                        tracker.ShowWeeklyProgress();
+                        tracker.ShowWeeklyProgress(); GetRandomDua();
                         Pause();
                         break;
                     case 6:
-                        ViewProfile();
+                        ViewProfile(); GetRandomDua();
                         break;
                     case 7:
                         Console.ForegroundColor = ConsoleColor.Green;
+                        GetRandomDua();
                         Console.WriteLine("\t\t\t\t\t Exiting program. Goodbye!");
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.DarkRed;
+                        
                         Console.WriteLine("\t\t\t\t\t Invalid choice. Try again.");
+                        GetRandomDua();
                         Pause();
                         break;
                 }
             } while (choice != 7);
         }
-
+        //\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////+++++++++++/////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        //انشاء حساب
         static void CreateNewUser()
         {
             Console.Clear();
@@ -97,7 +106,7 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string ageInput = Console.ReadLine();
 
-                if (int.TryParse(ageInput, out age) && age > 18)
+                if (int.TryParse(ageInput, out age) && age > 10&&age<100)
                     break;
                 else
                 {
@@ -117,12 +126,12 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string weightInput = Console.ReadLine();
 
-                if (double.TryParse(weightInput, out weight) && weight > 40)
+                if (double.TryParse(weightInput, out weight) && weight >= 20&&weight<150)
                     break;
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\t\t\t\t\t Invalid weight! Please enter a valid number (+40).");
+                    Console.WriteLine("\t\t\t\t\t Invalid weight! Please enter a valid number (+20).");
                     Console.ResetColor();
                 }
             }
@@ -137,12 +146,12 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string heightInput = Console.ReadLine();
 
-                if (double.TryParse(heightInput, out height) && height > 100)
+                if (double.TryParse(heightInput, out height) && height > 100&&height<250)
                     break;
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\t\t\t\t\t Invalid height! Please enter a valid number (+100).");
+                    Console.WriteLine("\t\t\t\t\t Invalid height! Please enter a valid number (+50).");
                     Console.ResetColor();
                 }
             }
@@ -157,7 +166,9 @@ namespace FitnesTraker_project
 
             Pause();
         }
-
+        
+        /// /////////////////////\\///////////////++++++++++++++++++++++++++++++++++///////////////////\\\\\\\//////////////////////////
+      
 
         static void UpdateProfile()
         {
@@ -186,7 +197,9 @@ namespace FitnesTraker_project
             Console.WriteLine("\n\t\t\t\t\t Profile updated successfully!");
             Pause();
         }
-
+        /// <summary>
+        /// ////////////////////////////////////****************************/////////////////////////////////////////////////
+        /// </summary>
         static void LogWorkout()
         {
             if (currentUser == null)
@@ -265,7 +278,7 @@ namespace FitnesTraker_project
             Pause();
         }
 
-
+        //\/\///////////////////\/\/\\//\\/\\/\/\/\/\/\/\//\/\/\/\/\/\/\//////////////////\\/\/\/\/\/\/\/
         static void ViewWorkoutPlan()
         {
             if (currentUser == null || currentUser.WorkoutPlans.Count == 0)
@@ -281,7 +294,7 @@ namespace FitnesTraker_project
 
             Pause();
         }
-
+      //  \//\/\/\/\/\\/\/\//\\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
         static void ViewProfile()
         {
             if (currentUser == null)
@@ -295,7 +308,55 @@ namespace FitnesTraker_project
             }
             Pause();
         }
+        //\\\/\/\\/\/\/\/\/\//\\//\\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/
+        public static void GetRandomDua()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
 
+            string[] duas = {
+        "اللهم إني أسألك العفو والعافية",
+        "اللهم اجعلني من الصالحين",
+        "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة",
+        "اللهم صل على محمد وعلى آل محمد",
+        "اللهم اجعل عملي خالصًا لوجهك الكريم",
+        "اللهم اهدني وسدد خطاي",
+        "اللهم وفقني لما تحبه وترضاه",
+        "اللهم ارزقني بر والدي",
+        "اللهم اغفر لي ولوالدي وللمؤمنين جميعًا",
+        "اللهم اجعل القرآن ربيع قلبي ونور صدري",
+        "اللهم اجعلني من الذاكرين الشاكرين",
+        "اللهم اكفني بحلالك عن حرامك واغنني بفضلك عمن سواك"
+    };
+
+            Random random = new Random();
+            int indexDua = random.Next(duas.Length);
+
+            // عكس النص العربي علشان يظهر مضبوط في الكونسول
+            string finalDua = ReverseText(duas[indexDua]);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\t\t\t\t\t " +finalDua);
+            Console.ResetColor();
+        }
+
+        // دالة لعكس النص بشكل صحيح مع الحركات
+        private static string ReverseText(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            var si = new StringInfo(input);
+            int length = si.LengthInTextElements;
+            string[] elements = new string[length];
+
+            for (int i = 0; i < length; i++)
+                elements[i] = si.SubstringByTextElements(i, 1);
+
+            Array.Reverse(elements);
+            return string.Concat(elements);
+        }
+
+
+        //\\\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\//\\//\\\/
         static void Pause()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
