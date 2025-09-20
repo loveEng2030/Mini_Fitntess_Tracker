@@ -1,4 +1,3 @@
-﻿
 ﻿using System;
 using System.Globalization;
 using System.Text;
@@ -37,7 +36,7 @@ namespace FitnesTraker_project
                 switch (choice)
                 {
                     case 1:
-                        CreateNewUser(); 
+                        CreateNewUser();
                         GetRandomDua();
                         break;
                     case 2:
@@ -63,7 +62,7 @@ namespace FitnesTraker_project
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        
+
                         Console.WriteLine("\t\t\t\t\t Invalid choice. Try again.");
                         GetRandomDua();
                         Pause();
@@ -106,7 +105,7 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string ageInput = Console.ReadLine();
 
-                if (int.TryParse(ageInput, out age) && age > 10&&age<100)
+                if (int.TryParse(ageInput, out age) && age > 10 && age < 100)
                     break;
                 else
                 {
@@ -126,7 +125,7 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string weightInput = Console.ReadLine();
 
-                if (double.TryParse(weightInput, out weight) && weight >= 20&&weight<150)
+                if (double.TryParse(weightInput, out weight) && weight >= 20 && weight < 150)
                     break;
                 else
                 {
@@ -146,7 +145,7 @@ namespace FitnesTraker_project
                 Console.Write("\t\t\t\t\t ");
                 string heightInput = Console.ReadLine();
 
-                if (double.TryParse(heightInput, out height) && height > 100&&height<250)
+                if (double.TryParse(heightInput, out height) && height > 50 && height < 250)
                     break;
                 else
                 {
@@ -167,9 +166,9 @@ namespace FitnesTraker_project
             Pause();
 
         }
-        
+
         /// /////////////////////\\///////////////++++++++++++++++++++++++++++++++++///////////////////\\\\\\\//////////////////////////
-      
+
 
         static void UpdateProfile()
         {
@@ -297,7 +296,7 @@ namespace FitnesTraker_project
             GetRandomDua();
             Pause();
         }
-      //  \//\/\/\/\/\\/\/\//\\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+        //  \//\/\/\/\/\\/\/\//\\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
         static void ViewProfile()
         {
             if (currentUser == null)
@@ -339,7 +338,7 @@ namespace FitnesTraker_project
             string finalDua = ReverseText(duas[indexDua]);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n\t\t\t\t\t " +finalDua);
+            Console.WriteLine("\n\t\t\t\t\t " + finalDua);
             Console.ResetColor();
         }
 
@@ -368,4 +367,140 @@ namespace FitnesTraker_project
             Console.ReadKey();
         }
     }
+}
+
+// علشان اعمل  التمرين
+public class Exercise
+{
+    public string Name;
+    public int DurationMinutes;
+    public double CaloriesPerMinute;
+
+    //  حساب السعرات المحروقة
+    public double GetCalories()
+    {
+        return DurationMinutes * CaloriesPerMinute;
+    }
+}
+
+public class ProgressTracker
+{
+    public double WeeklyCalories;
+    public int TotalWorkoutTime;
+    public Dictionary<string, int> ExerciseStats;
+
+    public ProgressTracker()
+    {
+        WeeklyCalories = 0;
+        TotalWorkoutTime = 0;
+        ExerciseStats = new Dictionary<string, int>();
+    }
+
+    // تحديث التقدم الأسبوعي بعد إضافة خطة جديدة
+    public void UpdateProgress(Workout workout)
+    {
+        foreach (var exercise in workout.Exercises)
+        {
+            WeeklyCalories += exercise.GetCalories();
+            TotalWorkoutTime += exercise.DurationMinutes;
+
+            if (ExerciseStats.ContainsKey(exercise.Name))
+                ExerciseStats[exercise.Name]++;
+            else
+                ExerciseStats[exercise.Name] = 1;
+        }
+    }
+
+    // عرض إحصائيات الأسبوع
+    public void ShowWeeklyProgress()
+    {
+        Console.WriteLine("\n\t\t\t\t\t ==== Weekly Progress ====");
+        Console.WriteLine($"\t\t\t\t\t Total Calories Burned: {WeeklyCalories}");
+        Console.WriteLine($"\t\t\t\t\t Total Workout Time: {TotalWorkoutTime} minutes");
+
+        Console.WriteLine("\t\t\t\t\t Exercise Breakdown:");
+        foreach (var stat in ExerciseStats)
+        {
+            Console.WriteLine($"\t\t\t\t\t - {stat.Key}: {stat.Value} times");
+        }
+    }
+}
+
+
+public class User
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public double Weight { get; set; }
+    public double Height { get; set; }
+    public List<Workout> WorkoutPlans { get; set; }
+
+    public User(string name, int age, double weight, double height)//Constructor
+    {
+        Name = name;
+        Age = age;
+        Weight = weight;
+        Height = height;
+        WorkoutPlans = new List<Workout>();
+    }
+
+    public void UpdateProfile(string NewName, int NewAge, double NewWeight, double NewHeight)//UpdateProfile_method
+    {
+        Name = NewName;
+        Age = NewAge;
+        Weight = NewWeight;
+        Height = NewHeight;
+    }
+
+    public void ViewProfile()//ViewProfile_Method
+    {
+        Console.WriteLine($"\t\t\t\t\t Name :{Name}");
+        Console.WriteLine($"\t\t\t\t\t Age :{Age}");
+        Console.WriteLine($"\t\t\t\t\t Weight :{Weight}");
+        Console.WriteLine($"\t\t\t\t\t Height :{Height}");
+        Console.WriteLine($"\t\t\t\t\t Workout Plans Count :{WorkoutPlans.Count}");
+    }
+}
+
+// خطة التمرين اليومية
+public class Workout
+{
+    // قائمة التمارين
+    public List<Exercise> Exercises = new List<Exercise>();
+
+    // إضافة تمرين
+    public void AddExercise(string name, int duration, double calPerMin)
+    {
+        Exercise ex = new Exercise();
+        ex.Name = name;
+        ex.DurationMinutes = duration;
+        ex.CaloriesPerMinute = calPerMin;
+
+        Exercises.Add(ex);
+    }
+
+    // حساب إجمالي السعرات
+    public double GetTotalCalories()
+    {
+        double total = 0;
+        foreach (var ex in Exercises)
+        {
+            total += ex.GetCalories();
+        }
+        return total;
+    }
+
+    // عرض التمارين
+    public void ShowPlan()
+    {
+        Console.WriteLine("\t\t\t\t\t Workout Plan:");
+
+        foreach (var ex in Exercises)
+        {
+            Console.WriteLine($"\t\t\t\t\t - {ex.Name} | {ex.DurationMinutes} minutes | {ex.GetCalories()} calories burned");
+        }
+
+        Console.WriteLine($"\t\t\t\t\t Total Calories: {GetTotalCalories()}");
+    }
+
 }
