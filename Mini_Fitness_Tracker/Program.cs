@@ -163,8 +163,9 @@ namespace FitnesTraker_project
             Console.WriteLine("\n\t\t\t\t\t User profile created successfully!");
             Console.WriteLine($"\t\t\t\t\t Welcome, {currentUser.Name}!");
             Console.ResetColor();
-
+            GetRandomDua();
             Pause();
+
         }
         
         /// /////////////////////\\///////////////++++++++++++++++++++++++++++++++++///////////////////\\\\\\\//////////////////////////
@@ -195,6 +196,7 @@ namespace FitnesTraker_project
             currentUser.UpdateProfile(newName, newAge, newWeight, newHeight);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\t\t\t\t\t Profile updated successfully!");
+            GetRandomDua();
             Pause();
         }
         /// <summary>
@@ -275,6 +277,7 @@ namespace FitnesTraker_project
             tracker.UpdateProgress(workout);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\t\t\t\t\t Workout logged successfully!");
+            GetRandomDua();
             Pause();
         }
 
@@ -291,7 +294,7 @@ namespace FitnesTraker_project
 
             var latestWorkout = currentUser.WorkoutPlans[currentUser.WorkoutPlans.Count - 1];
             latestWorkout.ShowPlan();
-
+            GetRandomDua();
             Pause();
         }
       //  \//\/\/\/\/\\/\/\//\\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -306,6 +309,7 @@ namespace FitnesTraker_project
             {
                 currentUser.ViewProfile();
             }
+            GetRandomDua();
             Pause();
         }
         //\\\/\/\\/\/\/\/\/\//\\//\\/\/\/\/\\/\/\/\/\/\/\/\/\/\/\/\/\\/\/\/\/\/\/\/\/\/
