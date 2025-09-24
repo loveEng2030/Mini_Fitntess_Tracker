@@ -10,7 +10,7 @@ namespace FitnesTraker_project
         static User currentUser = null;
         static ProgressTracker tracker = new ProgressTracker();
 
-        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      |||      عمرو فتحي ليي ليثي        |||        \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         static void Main(string[] args)
         {
             int choice;
@@ -110,7 +110,7 @@ namespace FitnesTraker_project
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\t\t\t\t\t Invalid age! Please enter a valid number  (+18).");
+                    Console.WriteLine("\t\t\t\t\t Invalid age! Please enter a valid number  (+10).");
                     Console.ResetColor();
                 }
             }
@@ -368,7 +368,7 @@ namespace FitnesTraker_project
         }
     }
 }
-
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\              محمود ياسر عكاشة                \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 // علشان اعمل  التمرين
 public class Exercise
 {
@@ -426,7 +426,7 @@ public class ProgressTracker
     }
 }
 
-
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\         احمد ياسر       //////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 public class User
 {
     public string Name { get; set; }
@@ -461,7 +461,7 @@ public class User
         Console.WriteLine($"\t\t\t\t\t Workout Plans Count :{WorkoutPlans.Count}");
     }
 }
-
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\            شهاب الجبالي                 //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
 // خطة التمرين اليومية
 public class Workout
 {
